@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Wishes</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+        .wish {
+            font-size: 20px;
+            color: #d81b60;
+            margin-top: 10px;
+            display: none;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            border-radius: 50%;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100vh); }
+            to { transform: translateY(100vh); }
+        }
+        .link-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Happy Anniversary!</h2>
+        <button onclick="showWish()">Click for a Surprise 🎉</button>
+        <p class="wish" id="wish"></p>
+        <div class="link-container">
+            <a href="#" onclick="showOnMobile()">Click here to view on mobile 📱</a>
+        </div>
+    </div>
+
+    <script>
+        function getAnniversaryWish(coupleName, years) {
+            const messages = [
+                `Happy ${years}th Anniversary, ${coupleName}! May your love continue to grow stronger! ❤️🥂`,
+                `Wishing you both a lifetime of love and happiness on your ${years}th anniversary! 💑🎉`,
+                `Cheers to ${years} beautiful years together, ${coupleName}! 🥂💖`,
+                `Happy Anniversary, ${coupleName}! forever to go! 🎊💍`,
+                `Congratulations on ${years} years of love! 💕✨`
+            ];
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+        
+        function showWish() {
+            const coupleName = "John & Emily";
+            const yearsMarried = 10;
+            document.getElementById("wish").textContent = getAnniversaryWish(coupleName, yearsMarried);
+            document.getElementById("wish").style.display = "block";
+            launchConfetti();
+        }
+        
+        function launchConfetti() {
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement("div");
+                confetti.className = "confetti";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                confetti.style.backgroundColor = ["gold", "pink", "red", "blue", "purple"][Math.floor(Math.random() * 5)];
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+        
+        function showOnMobile() {
+            alert("Open this link on your mobile browser for the best experience! 📱");
+        }
+    </script>
+</body>
+</html>
